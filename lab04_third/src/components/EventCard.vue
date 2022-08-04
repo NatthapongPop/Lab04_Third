@@ -2,7 +2,6 @@
   <div class="event-card">
     <router-link :to="{ name: 'EventDetails', params: { id: event.id } }">
       <h3>Name: {{ event.first_name + " " + event.last_name }}</h3>
-
     </router-link>
   </div>
 </template>

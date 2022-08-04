@@ -26,6 +26,7 @@ export default {
     EventService.getEventsPass()
       .then((res) => {
         this.events = res.data;
+        console.log(this.events);
       })
       .catch((err) => {
         console.log(err);

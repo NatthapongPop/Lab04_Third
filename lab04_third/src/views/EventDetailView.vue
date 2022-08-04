@@ -1,8 +1,10 @@
 <template>
   <div class="event" v-if="event">
-    <h1>Name: {{ event.first_name + " " + event.last_name }}</h1>
-    <p>ID: {{ event.id }}</p>
+    <h3>Name: {{ event.first_name + " " + event.last_name }}</h3>
+    <p>Gender: {{ event.gender }}</p>
+    <p>E-mail: {{ event.email }}</p>
     <p>TripsDate: {{ event.travelDate }}</p>
+    <p>AirlineID: {{ event.airlineId }}</p>
   </div>
 </template>
 
@@ -19,17 +21,19 @@ export default {
   created() {
     EventService.getEventsPass()
       .then((res) => {
-        console.log();
-        if (res.id == this.id) {
-          this.event = res;
-          count += 1;
-        }
-        if (count + Object.keys(res).length == Object.keys(res).length) {
-          this.$router.push({
-            name: "404Resource",
-            params: { resource: this.id },
-          });
-        }
+        res.data.forEach((obj) => {
+          console.log();
+          if (obj.id == this.id) {
+            this.event = obj;
+            count += 1;
+          }
+          if (count + Object.keys(obj).length == Object.keys(obj).length) {
+            this.$router.push({
+              name: "404Resource",
+              params: { resource: this.id },
+            });
+          }
+        });
       })
       .catch((err) => {
         console.log(err);

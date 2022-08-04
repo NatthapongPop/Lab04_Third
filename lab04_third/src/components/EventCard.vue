@@ -1,9 +1,8 @@
 <template>
   <div class="event-card">
     <router-link :to="{ name: 'EventDetails', params: { id: event.id } }">
-      <h1>Name: {{ event.first_name + " " + event.last_name }}</h1>
-      <p>ID: {{ event.id }}</p>
-      <p>TripsDate: {{ event.travelDate }}</p>
+      <h3>Name: {{ event.first_name + " " + event.last_name }}</h3>
+
     </router-link>
   </div>
 </template>

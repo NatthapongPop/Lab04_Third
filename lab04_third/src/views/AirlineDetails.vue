@@ -10,7 +10,7 @@
 
 <script>
 import EventService from "@/services/EventService.js";
-
+var count = 0;
 export default {
   props: ["id"],
   data() {
@@ -25,6 +25,13 @@ export default {
           console.log();
           if (obj.id == this.id) {
             this.event = obj;
+            count += 1;
+          }
+          if (count + Object.keys(obj).length == Object.keys(obj).length) {
+            this.$router.push({
+              name: "404Resource",
+              params: { resource: this.id },
+            });
           }
         });
       })

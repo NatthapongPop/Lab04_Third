@@ -5,6 +5,11 @@
     <p>E-mail: {{ event.email }}</p>
     <p>TripsDate: {{ event.travelDate }}</p>
     <p>AirlineID: {{ event.airlineId }}</p>
+    <router-link
+      :to="{ name: 'AirlineDetails', params: { id: event.airlineId } }"
+    >
+      Airline Details
+    </router-link>
   </div>
 </template>
 

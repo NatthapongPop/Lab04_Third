@@ -5,6 +5,7 @@ import AirlineDetails from "../views/AirlineDetails.vue";
 import PageNotFound from "../views/events/PageNotFound.vue";
 import ResourceNotFound from "../views/events/ResourceNotFound.vue";
 import EventEditView from "@/views/events/EventEditView.vue";
+import NProgress from "nprogress";
 
 const routes = [
   {
@@ -60,4 +61,10 @@ const router = createRouter({
   routes,
 });
 
+router.beforeEach(() => {
+  NProgress.start();
+});
+router.afterEach(() => {
+  NProgress.done();
+});
 export default router;

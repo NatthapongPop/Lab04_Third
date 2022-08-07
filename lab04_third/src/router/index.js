@@ -6,6 +6,8 @@ import PageNotFound from "../views/events/PageNotFound.vue";
 import ResourceNotFound from "../views/events/ResourceNotFound.vue";
 import EventEditView from "@/views/events/EventEditView.vue";
 import NProgress from "nprogress";
+import EventService from "@/services/EventService.js";
+import GStore from "@/store";
 
 const routes = [
   {
@@ -27,6 +29,24 @@ const routes = [
     name: "EventDetails",
     component: EventDetails,
     props: true,
+    beforeEnter: (to) => {
+      // <- api here
+      return EventService.getEventsAir(to.params.id)
+        .then((response) => {
+          //need data here
+          GStore.event = response.data; // store the event
+        })
+        .catch((error) => {
+          if (error.response && error.response.status == 404) {
+            return {
+              name: "404Resource",
+              params: { resource: "event" },
+            };
+          } else {
+            return console.log(error);
+          }
+        });
+    },
     children: [
       {
         path: "edit",
@@ -59,6 +79,13 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition;
+    } else {
+      return { top: 0 };
+    }
+  },
 });
 
 router.beforeEach(() => {

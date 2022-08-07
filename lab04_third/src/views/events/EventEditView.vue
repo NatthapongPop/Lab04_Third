@@ -1,7 +1,5 @@
 <template>
-  <p>Edit the event here</p>
-
-  <router-link :to="{ name: 'EventDetails', params: { id: event.id } }">
+  <router-link :to="{ name: 'home' }">
     <button @click="edit">edit update</button>
   </router-link>
 </template>
@@ -15,7 +13,7 @@ export default {
       this.GStore.flashMessage = "Passengers deatils has been update.";
       setTimeout(() => {
         this.GStore.flashMessage = "";
-      }, 3000);
+      }, 5000);
 
       this.$router.push({
         name: "EventDetails",

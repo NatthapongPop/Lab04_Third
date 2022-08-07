@@ -3,6 +3,7 @@
     <div id="nav">
       <router-link :to="{ name: 'EventEdit' }">Edit_User_Data</router-link>
     </div>
+    <router-view :event="event" />
     <h3>Name: {{ event.first_name + " " + event.last_name }}</h3>
     <p>Gender: {{ event.gender }}</p>
     <p>E-mail: {{ event.email }}</p>

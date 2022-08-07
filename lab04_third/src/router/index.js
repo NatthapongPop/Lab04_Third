@@ -4,6 +4,7 @@ import EventDetails from "../views/EventDetailView.vue";
 import AirlineDetails from "../views/AirlineDetails.vue";
 import PageNotFound from "../views/events/PageNotFound.vue";
 import ResourceNotFound from "../views/events/ResourceNotFound.vue";
+import EventEditView from "@/views/events/EventEditView.vue";
 
 const routes = [
   {
@@ -25,6 +26,14 @@ const routes = [
     name: "EventDetails",
     component: EventDetails,
     props: true,
+    children: [
+      {
+        path: "edit",
+        name: "EventEdit",
+        props: true,
+        component: EventEditView,
+      },
+    ],
   },
   {
     path: "/airline/:id",
